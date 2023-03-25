@@ -82,7 +82,6 @@ export class AuthTokenDto implements AuthTokenReq {
   @Expose()
   @IsOptional()
   @IsEnum(Scope, { each: true })
-  @Transform(({ value }) => value.split(' '))
   scope?: Scope[];
 
   @Expose()

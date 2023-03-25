@@ -14,7 +14,7 @@ export class AuthController {
   }
 
   @Get('logout')
-  async logout(): Promise<AuthTokenRes> {
+  async logout(): Promise<boolean> {
     return this.authService.logout();
   }
 

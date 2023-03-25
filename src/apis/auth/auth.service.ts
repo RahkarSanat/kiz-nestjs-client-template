@@ -18,7 +18,7 @@ export class AuthService {
     return kiz.authService.token(data);
   }
 
-  async logout(): Promise<AuthTokenRes> {
+  async logout(): Promise<boolean> {
     return kiz.authService.logout();
   }
 

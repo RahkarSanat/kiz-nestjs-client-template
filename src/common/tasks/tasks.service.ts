@@ -19,13 +19,13 @@ export class TasksService {
 
   @Timeout(5_000)
   public async startFetchingToken() {
+    this.logger.debug('Fetching JWT token for the first time.');
+
     const response = await this.fetchToken();
     const token = response?.access_token;
 
     if (!token) throw new UnauthorizedException('The token is not valid');
     this.eventEmitter.emit(Event.APP_REFRESH_TOKEN, new TokenDto(token));
-
-    this.logger.debug('Fetched JWT token for the first time');
 
     const interval = setInterval(
       this.callback,

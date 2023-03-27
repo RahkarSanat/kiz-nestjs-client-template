@@ -17,9 +17,4 @@ export class AuthController {
   async logout(): Promise<boolean> {
     return this.authService.logout();
   }
-
-  @Get('decrypt')
-  async decrypt(): Promise<AuthTokenRes> {
-    return this.authService.decrypt();
-  }
 }

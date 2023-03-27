@@ -1,28 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { AuthTokenRes } from '@rahkarsanat/kiz-sdk';
 import { AuthTokenDto } from './dto';
-import { kiz } from '@common';
-import { AxiosRequestConfig } from 'axios';
+import { KizProvider } from '@common';
 
 @Injectable()
 export class AuthService {
-  private config: AxiosRequestConfig;
-  constructor() {
-    /**
-     * For setting new axios config in
-     * this class use the defined
-     * `config` property above
-     */
-  }
+  constructor(private readonly kizProvider: KizProvider) {}
+
   async token(data: AuthTokenDto): Promise<AuthTokenRes> {
-    return kiz.authService.token(data);
+    return this.kizProvider.client.authService.token(data);
   }
 
   async logout(): Promise<boolean> {
-    return kiz.authService.logout();
+    return this.kizProvider.client.authService.logout();
   }
 
   async decrypt(): Promise<AuthTokenRes> {
-    return kiz.authService.decrypt();
+    return this.kizProvider.client.authService.decrypt();
   }
 }
